@@ -33,4 +33,9 @@ class Trip extends DataObject {
         
     }
 
+    public function getCMSfields() {
+        $fields = parent::getCMSFields();
+	    return $fields;
+    }
+
 }

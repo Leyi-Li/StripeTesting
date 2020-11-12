@@ -7,6 +7,12 @@
 		$Form
 		$CommentsForm
 
+	<% loop $Children %>
+		<div>
+			<h2><a href="$Link">$Title</a></h2>
+		</div>
+	<% end_loop %>
+
 	<% loop $trips %>
 		$Name:
 		<% loop $Destinations %>
@@ -15,6 +21,6 @@
 		</br>
 	<% end_loop %>
 
-	$DestinationForm
+	
 
 </div>
