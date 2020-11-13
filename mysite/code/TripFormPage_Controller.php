@@ -15,7 +15,7 @@ class TripFormPage_Controller extends Page_Controller {
                     ->setAttribute('Placeholder', 'Name*')
             ),
             FieldList::create(
-                FormAction::create('handleTrip','Post Trip')
+                FormAction::create('handleTrip','Submit')
             )
         );
         return $form;
@@ -25,10 +25,22 @@ class TripFormPage_Controller extends Page_Controller {
      * @param Form $form 
      */
     public function handleTrip($data, $form){
-        $trip = $Trip::create();
+        $existing = Trip::get()->filter([
+            'Name' => $data['Name']
+        ]
+        );
+
+        if($existing->exists()){
+            $form->sessionMessage('This trip already exsits', 'bad');
+            return $this->redirectBack();
+        }
+
+        /** @var Trip $trip */
+        $trip = Trip::create(); 
         $form->saveInto($trip);
+        $trip->write();
         $form->sessionMessage('New Trip Created', 'good');
 
-        return $this->redirectBack();
+        return $this->redirect('new-destination/?tripID='.$trip->ID);
     }
 }

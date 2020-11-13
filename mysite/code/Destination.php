@@ -12,13 +12,18 @@ class Destination extends DataObject {
     );
 
     private static $has_one = array (
-        'Trip' => 'Trip'
+        'Trip' => 'Trip',
+        'DestinationFormPage' => 'DestinationFormPage'
     );
 
     public function getCMSfields() {
         $fields = parent::getCMSFields();
 	    // $fields->addFieldToTab('Root.Content',new CheckboxField('CustomProperty'));
 	    return $fields;
+    }
+
+    public function getEditUrl() {
+        return '/new-destination/?destinationID='.$this->ID;
     }
 
 }

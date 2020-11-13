@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @property string Name 
+ */
 class Trip extends DataObject {
 
     private static $db = array (
@@ -10,7 +12,9 @@ class Trip extends DataObject {
         'Destinations' => 'Destination'
     );
 
-    
+    private static $has_one = array (
+        'TripFormPage' => 'TripFormPage'
+    );
 
     /** 
      * @return DateTime - first destination’s start time

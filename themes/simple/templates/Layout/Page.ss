@@ -16,7 +16,7 @@
 	<% loop $trips %>
 		$Name:
 		<% loop $Destinations %>
-			$Name
+			<a href='$getEditUrl()'>$Name</a>
 		<% end_loop %>
 		</br>
 	<% end_loop %>

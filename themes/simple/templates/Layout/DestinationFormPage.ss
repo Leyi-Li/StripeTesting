@@ -1,3 +1,3 @@
-<h1>This is the Trip Form Page</h1>
+<h1>This is the Destination Form Page</h1>
 
 $DestinationForm
