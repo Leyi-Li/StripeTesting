@@ -36,7 +36,8 @@ class DestinationFormPage_Controller extends Page_Controller {
 
             ),
             FieldList::create(
-                FormAction::create('handleDestination','Submit')
+                FormAction::create('handleDestination','Submit'),
+                FormAction::create('handleDelete','Delete')
             ),
             RequiredFields::create('Name', 'StartTime', 'EndTime')
         );
@@ -70,5 +71,16 @@ class DestinationFormPage_Controller extends Page_Controller {
         $destination->write();
 
         return $this->redirectBack();
+    }
+
+    public function handleDelete($data, $form){
+        if($data['DestinationID']){
+            $destination = Destination::get()->byID($data['DestinationID']);
+            $destination->delete();
+            $form->sessionMessage('Destination Deleted', 'good');
+        }else{
+            return $this->redirectBack();
+        }
+        return $this->redirect('/');
     }
 }
