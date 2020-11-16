@@ -1,4 +1,4 @@
-<% include SideBar %>
+
 <div class="content-container unit size3of4 lastUnit">
 	<article>
 		<h1>$Title</h1>
@@ -16,7 +16,14 @@
 	<% loop $trips %>
 		$Name:
 		<% loop $Destinations %>
-			<a href='$getEditUrl()'>$Name</a>
+			<% if $Last %>
+				<a href='$getEditUrl()'>$Name</a>
+				<a href='/RestController/delete/$ID'>Delete</a>
+			<% else %>
+				<a href='$getEditUrl()'>$Name</a>,
+				<a href='/RestController/delete/$ID'>Delete</a>
+			<% end_if %>
+			</br>
 		<% end_loop %>
 		</br>
 	<% end_loop %>

@@ -18,6 +18,7 @@ class Page_Controller extends ContentController
      * @var array
      */
     private static $allowed_actions = array(
+       
     );
 
     public function init()
@@ -30,7 +31,6 @@ class Page_Controller extends ContentController
     public function trips(){
         return Trip::get();
     }
-
 
 }
 

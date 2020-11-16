@@ -60,13 +60,6 @@ class DestinationFormPage_Controller extends Page_Controller {
             $destination = Destination::create();
             $form->sessionMessage('New Destination Created', 'good');
         }
-        // $destination->Name = $data['Name'];
-        // $destination->StartTime = $data['StartTime'];
-        // $destination->EndTime = $data['EndTime'];
-        // $destination->Budget = $data['Budget'];
-        // $destination->Transportations = $data['Transportations'];
-        // $destination->ActivityDescription = $data['ActivityDescription'];
-        // $destination->TripID = $this->ID;
         $form->saveInto($destination);
         $destination->write();
 
