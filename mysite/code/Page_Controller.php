@@ -18,6 +18,7 @@ class Page_Controller extends ContentController
      * @var array
      */
     private static $allowed_actions = array(
+       
     );
 
     public function init()
@@ -30,49 +31,6 @@ class Page_Controller extends ContentController
     public function trips(){
         return Trip::get();
     }
-
-    public function DestinationForm() {
-        $transportations = ['Walk', 'Bike', 'Car', 'Train', 'Bus', 'Boat', 'Subway', 'Plane'];
-
-        $form = Form::create(
-            $this,
-            __FUNCTION__,
-            FieldList::create(
-                TextField::create('Name', '')
-                    ->setAttribute('Placeholder', 'Name*'),
-                DateField::create('StartTime', '')
-                    ->setAttribute('Placeholder', 'Start Time*'),
-                DateField::create('EndTime', '')
-                    ->setAttribute('Placeholder', 'End Time*'),
-                CurrencyField::create('Budget', '')
-                    ->setAttribute('Placeholder', 'Budget'),
-                DropdownField::create('Transportations','Transportations')
-                    ->setEmptyString('--any--')                   
-                    ->setSource($transportations),
-                TextareaField::create('ActivityDescription', '')
-                    ->setAttribute('Placeholder', 'Activity Description*')
-            ),
-            FieldList::create(
-                FormAction::create('handleDestination','Post Destination')
-            )
-        );
-        return $form;
-    }
-
-    public function handleDestination($data, $form){
-        $destination = $Destination::create();
-        $destination->Name = $data['Name'];
-        $destination->StartTime = $data['StartTime'];
-        $destination->EndTime = $data['EndTime'];
-        $destination->Budget = $data['Budget'];
-        $destination->Transportations = $data['Transportations'];
-        $destination->ActivityDescription = $data['ActivityDescription'];
-
-        $form->sessionMessage('New Destination Created', 'good');
-
-        return $this->redirectBack();
-    }
-
 
 }
 
